@@ -1,8 +1,7 @@
 import threading
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
-from django.shortcuts import render
-from email_validator import validate_email
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
