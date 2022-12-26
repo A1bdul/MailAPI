@@ -146,4 +146,4 @@ ANYMAIL = {
     'MAILJET_SECRET_KEY': str(os.getenv('MYAPP_MAILJET_SECRET_KEY'))
 }
 
-DEFAULT_FROM_EMAIL = str(os.getenv('FROM_EMAIL'))
+EMAIL_HOST_USER = str(os.getenv('FROM_EMAIL'))
