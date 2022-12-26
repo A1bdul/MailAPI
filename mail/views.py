@@ -25,6 +25,6 @@ class MailAPIView(APIView):
         subject = request.data['name']
         msg = EmailMultiAlternatives(subject, message, settings.EMAIL_HOST_USER, ['a1daromosu@gmail.com', ])
         # msg.send()
-        print(message)
+        print(message, settings.EMAIL_HOST_USER)
         EmailThread(msg).start()
         return Response(True)
