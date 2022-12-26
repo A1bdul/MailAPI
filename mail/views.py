@@ -14,6 +14,7 @@ class EmailThread(threading.Thread):
         threading.Thread.__init__(self)
 
     def run(self):
+        print("sent!!")
         self.email_message.send()
 
 
