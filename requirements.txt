@@ -3,3 +3,4 @@ django-anymail==8.6
 djangorestframework==3.14.0
 Django
 gunicorn
+python-dotenv~=0.19.2
