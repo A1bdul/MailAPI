@@ -30,13 +30,13 @@ class MailAPIView(APIView):
         api_instance = sib_api_v3_sdk.TransactionalEmailsApi(sib_api_v3_sdk.ApiClient(configuration))
         subject = subject
         html_content = message
+        print(message)
         sender = {"name": sender, "email": email}
         to = [{"email": settings.EMAIL_HOST_USER, "name": "Abdul"}]
         headers = {"Some-Custom-Name": "unique-id-1234"}
         send_smtp_email = sib_api_v3_sdk.SendSmtpEmail(to=to, headers=headers,html_content=html_content, sender=sender, subject=subject)
         try:
             api_response = api_instance.send_transac_email(send_smtp_email)
-            print(message)
             return Response(True)
         except ApiException as e:
             print("Exception when calling SMTPApi->send_transac_email: %s\n" % e)
