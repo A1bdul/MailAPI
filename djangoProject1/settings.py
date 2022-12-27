@@ -143,7 +143,8 @@ else:
 
 ANYMAIL = {
     'MAILJET_API_KEY': str(os.getenv('MYAPP_MAILJET_API_KEY')),
-    'MAILJET_SECRET_KEY': str(os.getenv('MYAPP_MAILJET_SECRET_KEY'))
+    'MAILJET_SECRET_KEY': str(os.getenv('MYAPP_MAILJET_SECRET_KEY')),
+    'SENDINBLUE_API_KEY': :str(os.getenv("SENDINBLUE_API_KEY"))
 }
 
 EMAIL_HOST_USER = str(os.getenv('FROM_EMAIL'))
