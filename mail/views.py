@@ -5,8 +5,10 @@ import sib_api_v3_sdk
 from sib_api_v3_sdk.rest import ApiException
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from dotenv import load_dotenv
 
 
+load_dotenv()
 # Create your views here.
 class EmailThread(threading.Thread):
 
