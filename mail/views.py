@@ -26,12 +26,12 @@ class MailAPIView(APIView):
         email = request.data['email']
         message = request.data['message'] + '\nfrom ' + email
         subject = request.data['name']
-        print(message)
         configuration = sib_api_v3_sdk.Configuration()
+        print("lol1")
         configuration.api_key['api-key'] = str(os.getenv("SENDINBLUE_API_KEY"))
-        print("lol")
+        print("lol1")
         api_instance = sib_api_v3_sdk.TransactionalEmailsApi(sib_api_v3_sdk.ApiClient(configuration))
-        print("lol")
+        print("lol2")
         sender = {"name": "sender", "email": email}
         to = [{"email": settings.EMAIL_HOST_USER, "name": "Abdul"}]
         headers = {"Some-Custom-Name": "unique-id-1234"}
