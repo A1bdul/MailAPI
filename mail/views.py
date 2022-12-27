@@ -28,10 +28,9 @@ class MailAPIView(APIView):
         subject = request.data['name']
         configuration.api_key['api-key'] = str(os.getenv("SENDINBLUE_API_KEY"))
         api_instance = sib_api_v3_sdk.TransactionalEmailsApi(sib_api_v3_sdk.ApiClient(configuration))
-        subject = subject
         html_content = message
         print(message)
-        sender = {"name": sender, "email": email}
+        sender = {"name": "sender", "email": email}
         to = [{"email": settings.EMAIL_HOST_USER, "name": "Abdul"}]
         headers = {"Some-Custom-Name": "unique-id-1234"}
         send_smtp_email = sib_api_v3_sdk.SendSmtpEmail(to=to, headers=headers,html_content=html_content, sender=sender, subject=subject)
