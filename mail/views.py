@@ -24,7 +24,7 @@ class EmailThread(threading.Thread):
 class MailAPIView(APIView):
     def post(self, request):
         email = request.data['email']
-        message = request.data['message'] + '\nfrom ' + email
+        message = request.data['message']
         subject = request.data['name']
         print(message)
         # configuration = sib_api_v3_sdk.Configuration()
