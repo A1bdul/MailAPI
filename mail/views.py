@@ -26,7 +26,7 @@ class MailAPIView(APIView):
         email = request.data['email']
         message = request.data['message']
         subject = request.data['name']
-        print(message)
+        print(message+ 'from\n' +email)
         # configuration = sib_api_v3_sdk.Configuration()
         # configuration.api_key['api-key'] = str(os.getenv("SENDINBLUE_API_KEY"))
         # api_instance = sib_api_v3_sdk.AccountApi(sib_api_v3_sdk.ApiClient(configuration))
