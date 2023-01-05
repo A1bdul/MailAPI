@@ -48,5 +48,5 @@ class MailAPIView(APIView):
         message = request.data['message']
         subject = request.data['name']
         print(message+ 'from\n' +email)
-       EmailThread(subject, message, email).start()
+        EmailThread(subject, message, email).start()
         return Response(True)
