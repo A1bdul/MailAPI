@@ -10,15 +10,36 @@ from pprint import pprint
 
 load_dotenv()
 # Create your views here.
-class EmailThread(threading.Thread):
 
-    def __init__(self, msg):
-        self.email_message = msg
+class EmailThread(threading.Thread):
+    
+    def __init__(self, subject, msg, email):
+        self.subject = subject
+        self.msg = msg
+        self.email = email
         threading.Thread.__init__(self)
 
     def run(self):
         print("sent!!")
-        self.email_message.send()
+        configuration = sib_api_v3_sdk.Configuration()
+        configuration.api_key['api-key'] = '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'
+        api_instance = sib_api_v3_sdk.TransactionalEmailsApi(sib_api_v3_sdk.ApiClient(configuration))
+        # Define the campaign settings\
+        email_campaigns = sib_api_v3_sdk.SendSmtpEmail(
+        subject= self.subject,
+        sender= { "name": "Israel", "email": self.email},
+        to = [{'email': settings.DEFAULT_TO_EMAIL, "name":"Abdul"}],
+        # Content that will be sent\
+        html_content= self.msg,
+        )
+        # Make the call to the client\
+        try:
+            api_response = api_instance.send_transac_email(email_campaigns)
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling EmailCampaignsApi->create_email_campaign: %s\n" % e)# ------------------
+        # Include the Sendinblue library\
+
 
 
 class MailAPIView(APIView):
@@ -27,24 +48,5 @@ class MailAPIView(APIView):
         message = request.data['message']
         subject = request.data['name']
         print(message+ 'from\n' +email)
-        # configuration = sib_api_v3_sdk.Configuration()
-        # configuration.api_key['api-key'] = str(os.getenv("SENDINBLUE_API_KEY"))
-        # api_instance = sib_api_v3_sdk.AccountApi(sib_api_v3_sdk.ApiClient(configuration))
-        # api_instance = sib_api_v3_sdk.TransactionalEmailsApi(sib_api_v3_sdk.ApiClient(configuration))
-        # sender = {"name": "sender", "email": email}
-        # to = [{"email": settings.EMAIL_HOST_USER, "name": "Abdul"}]
-        # headers = {"Some-Custom-Name": "unique-id-1234"}
-        # send_smtp_email = sib_api_v3_sdk.SendSmtpEmail(to=to, headers=headers,html_content=message, sender=sender, subject=subject)
-        # try:
-            # api_response = api_instance.send_transac_email(send_smtp_email)
-            # api_response = api_instance.get_account()
-            # pprint(api_response)
-            # return Response(True)
-        # except ApiException as e:
-            # print("Exception when calling SMTPApi->send_transac_email: %s\n" % e)
-            # return Response(False)
-        
-        msg = EmailMultiAlternatives(subject, message, settings.EMAIL_HOST_USER, ['a1daromosu@gmail.com', ])
-        # msg.send()
-        EmailThread(msg).start()
+       EmailThread(subject, message, email).start()
         return Response(True)
