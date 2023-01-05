@@ -22,7 +22,7 @@ class EmailThread(threading.Thread):
     def run(self):
         print("sent!!")
         configuration = sib_api_v3_sdk.Configuration()
-        configuration.api_key['api-key'] = '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'
+        configuration.api_key['api-key'] = str(os.getenv('SENDINBLUE_API_KEY'))
         api_instance = sib_api_v3_sdk.TransactionalEmailsApi(sib_api_v3_sdk.ApiClient(configuration))
         # Define the campaign settings\
         email_campaigns = sib_api_v3_sdk.SendSmtpEmail(
