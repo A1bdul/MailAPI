@@ -28,7 +28,7 @@ class EmailThread(threading.Thread):
         email_campaigns = sib_api_v3_sdk.SendSmtpEmail(
         subject= self.subject,
         sender= { "name": "Israel", "email": self.email},
-        to = [{'email': DEFAULT_TO_EMAIL, "name":"Abdul"}],
+        to = [{'email': str(os.getenv(DEFAULT_FROM_EMAIL)) , "name":"Abdul"}],
         # Content that will be sent\
         html_content= self.msg,
         )
